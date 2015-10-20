@@ -35,11 +35,11 @@ public class NPCDaemon : MonoBehaviour {
 
 	//////////////////////////////////////
 	/// Variaveis de Animação
-	private bool m_isFacingLeft;
+	private bool m_isFacingLeft;  
 
 
-	void Awake(){
-		m_me = transform; //cache transform data for easy access/preformance
+    void Awake(){
+		m_me = transform; //cache transform data for easy access/performance
 	}
 
 	// Use this for initialization
@@ -54,7 +54,7 @@ public class NPCDaemon : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		m_distanceToTarget = distanceToTarget();
+        m_distanceToTarget = distanceToTarget();
 		m_actualDirection = directionToTarget();
 
 		if (m_stuntime > 0) {

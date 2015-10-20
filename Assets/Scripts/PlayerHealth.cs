@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using GameEvents;
 
-public class PlayerHealth : MonoBehaviour {
+public class PlayerHealth : MonoBehaviour, GameEventListener{
+    
 
 	public float Health;
 	public float MaxHealth;
+    private float healthChange = 0;
 
 	private float HitTime;
 	private float HitDelay = 0.5f;
@@ -12,11 +15,28 @@ public class PlayerHealth : MonoBehaviour {
 	void Start () {
 		MaxHealth = 100;
 		Health = 100;
-		HitTime = Time.time;;
-	}
-	
-	// Update is called once per frame
-	void Update () {
+		HitTime = Time.time;
+        GameEventManager.registerListener(this);
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // EVENT LISTENING
+    //////////////////////////////////////////////////////////////////////////
+
+    public void eventReceived(GameEvent e)  {
+        if (e is PlayerHealthEvent) {
+            float healthChange = (e as PlayerHealthEvent).playerHealth;
+            Health += healthChange;            
+            }
+        }
+
+
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Update health is called once per frame
+    //////////////////////////////////////////////////////////////////////////
+
+    void Update () {
 		if (Health <= 0) {
 			Debug.Log ("GAME OVER, YOU'RE DEAD");
 		}
@@ -34,10 +54,15 @@ public class PlayerHealth : MonoBehaviour {
 			if (HitTime + HitDelay < Time.time){
 				HitTime = Time.time;
 				Health -= 1;
+
 			}
 
 			float verticalPush    = EnemyHit.gameObject.transform.position.y - transform.position.y;
 			float horizontalPush  = EnemyHit.gameObject.transform.position.x - transform.position.x;
 		}
 	}
+
+   
+
+
 }
