@@ -23,12 +23,18 @@ public class PlayerHealth : MonoBehaviour, GameEventListener{
     // EVENT LISTENING
     //////////////////////////////////////////////////////////////////////////
 
-    public void eventReceived(GameEvent e)  {
-        if (e is PlayerHealthEvent) {
+    public void eventReceived(GameEvent e)
+    {
+        if (e is PlayerHealthEvent)
+        {
             float healthChange = (e as PlayerHealthEvent).playerHealth;
-            Health += healthChange;            
-            }
+            Health += healthChange;
+            if (Health <= 0)
+                Health = 0;
+            //Debug.Log("HealthChange: " + healthChange);
         }
+    }
+
 
 
 
@@ -45,7 +51,7 @@ public class PlayerHealth : MonoBehaviour, GameEventListener{
 			Health = MaxHealth;
 		}
 	
-		//Debug.Log (" HP: "+ Health.ToString());
+		Debug.Log (" HP: "+ Health.ToString());
 	}
 
 	void OnCollisionStay2D (Collision2D EnemyHit){

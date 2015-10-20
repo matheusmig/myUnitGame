@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using GameEvents;
 
 //********************************************************************************
 //  Realiza o ataque dos NPCs vegetais
@@ -19,6 +20,8 @@ public class NPCAtt : MonoBehaviour {
 
     private float distToTarget;
 
+    
+
 
     void Start() {
     }
@@ -31,11 +34,13 @@ public class NPCAtt : MonoBehaviour {
         {
             if (distToTarget < attackRange)
             {
-                Debug.Log(" Morreu: ");
+                //Debug.Log(" Morreu: ");
+                GameEventManager.post(new PlayerHealthEvent(-1));
             }
             else
             {
-                Debug.Log(" Viveu: ");
+                //Debug.Log(" Viveu: ");
+                //GameEventManager.post(new PlayerHealthEvent(0));
             }
         }
         else

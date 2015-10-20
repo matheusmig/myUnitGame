@@ -19,8 +19,6 @@ public class PlayerHealthEvent : GameEvent
     // EVENT DATA
     ///////////////////////////////////////////////////////////////////////////
 
-    //public Vector3 direction;
-    //public KeyCode pressedKey;
     public float playerHealth;
 
     ///////////////////////////////////////////////////////////////////////////
@@ -29,10 +27,9 @@ public class PlayerHealthEvent : GameEvent
 
     public PlayerHealthEvent( float health)
     {
-        //direction = d;
-        //pressedKey = k;
-        playerHealth = health;
+              playerHealth = health;
+       
     }
 
-
+    
 }
