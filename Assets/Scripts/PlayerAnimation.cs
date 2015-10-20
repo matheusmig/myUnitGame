@@ -49,6 +49,11 @@ public class PlayerAnimation : MonoBehaviour, GameEventListener {
 				break;
 			}
 		}
+
+		if (e is PlayerActionEvent) {
+			KeyCode k = (e as PlayerActionEvent).pressedKey;
+
+		}
 	}
 
 	///////////////////////////////////////////////////////////////////////////

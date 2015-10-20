@@ -15,10 +15,14 @@ public class InputManager : MonoBehaviour
 	///////////////////////////////////////////////////////////////////////////
 	
 	//Keycodes for controls
-	private KeyCode up = KeyCode.UpArrow;
-	private KeyCode left = KeyCode.LeftArrow;
+	private KeyCode up    = KeyCode.UpArrow;
+	private KeyCode left  = KeyCode.LeftArrow;
 	private KeyCode right = KeyCode.RightArrow;
-	private KeyCode down = KeyCode.DownArrow;
+	private KeyCode down  = KeyCode.DownArrow;
+
+	//Action controls
+	private KeyCode jump    = KeyCode.Space; 
+	private KeyCode attack1 = KeyCode.A; 
 	
 	///////////////////////////////////////////////////////////////////////////
 	// FIXED UPDATE
@@ -39,9 +43,16 @@ public class InputManager : MonoBehaviour
 		if(Input.GetKey(down))
 			GameEventManager.post(new PlayerMoveEvent(Vector3.down, down));
 
-		if(!Input.anyKey)
+		if(!Input.GetKey(up) && !Input.GetKey(down) && !Input.GetKey(left) && !Input.GetKey(right)) //Se nao e nenhuma tecla de controle
 			GameEventManager.post(new PlayerMoveEvent());
 
+		if (Input.GetKey(jump)) {
+			GameEventManager.post(new PlayerActionEvent(jump));
+		}
+
+		if (Input.GetKey(attack1)) {
+			GameEventManager.post(new PlayerActionEvent(attack1));
+		}
 
 	}
 }
