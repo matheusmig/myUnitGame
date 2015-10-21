@@ -15,14 +15,18 @@ public class InputManager : MonoBehaviour
 	///////////////////////////////////////////////////////////////////////////
 	
 	//Keycodes for controls
-	private KeyCode up    = KeyCode.UpArrow;
-	private KeyCode left  = KeyCode.LeftArrow;
-	private KeyCode right = KeyCode.RightArrow;
-	private KeyCode down  = KeyCode.DownArrow;
+	private KeyCode up    = KeyCode.W;
+	private KeyCode left  = KeyCode.A;
+	private KeyCode right = KeyCode.D;
+	private KeyCode down  = KeyCode.S;
 
 	//Action controls
-	private KeyCode jump    = KeyCode.Space; 
-	private KeyCode attack1 = KeyCode.A; 
+	private KeyCode jump        = KeyCode.Space; 
+	private KeyCode attackUp    = KeyCode.UpArrow;  
+	private KeyCode attackLeft  = KeyCode.LeftArrow; 
+	private KeyCode attackRight = KeyCode.RightArrow; 
+	private KeyCode attackDown  = KeyCode.DownArrow; 
+
 	
 	///////////////////////////////////////////////////////////////////////////
 	// FIXED UPDATE
@@ -50,9 +54,17 @@ public class InputManager : MonoBehaviour
 			GameEventManager.post(new PlayerActionEvent(jump));
 		}
 
-		if (Input.GetKey(attack1)) {
-			GameEventManager.post(new PlayerActionEvent(attack1));
+		if (Input.GetKey(attackUp)) {
+			GameEventManager.post(new PlayerActionEvent(attackUp));
 		}
-
+		if (Input.GetKey(attackLeft)) {
+			GameEventManager.post(new PlayerActionEvent(attackLeft));
+		}
+		if (Input.GetKey(attackRight)) {
+			GameEventManager.post(new PlayerActionEvent(attackRight));
+		}
+		if (Input.GetKey(attackDown)) {
+			GameEventManager.post(new PlayerActionEvent(attackDown));
+		}
 	}
 }

@@ -13,14 +13,17 @@ public class PlayerAction : MonoBehaviour, GameEventListener
 	
 	///////////////////////////////////////////////////////////////////////////
 	// VARIABLES
-	private Rigidbody2D rigid;
 	public  GameObject  bulletPrefab;
+	private Rigidbody2D rigid;
+
+	public  float fireRate = 1.0F;
+	private float nextFire = 0.0F;
 
 
 	///////////////////////////////////////////////////////////////////////////
 	// CONSTANTS
 	///////////////////////////////////////////////////////////////////////////
-	
+
 	
 	///////////////////////////////////////////////////////////////////////////
 	// START FUNCTION
@@ -47,8 +50,17 @@ public class PlayerAction : MonoBehaviour, GameEventListener
 				case KeyCode.Space:
 					Debug.Log ("ESPAÇOOOOOOOOOOOOOOOOOOO");
 					break;
-				case KeyCode.A:
-					FireBullet(); 
+			    case KeyCode.UpArrow:
+					FireBullet("Up"); 
+					break;
+			    case KeyCode.LeftArrow:
+					FireBullet("Left"); 
+					break;
+			    case KeyCode.RightArrow:
+					FireBullet("Right"); 
+					break;
+				case KeyCode.DownArrow:
+					FireBullet("Down"); 
 					break;
 				default : 
 					Debug.Log(pressedKey.GetTypeCode());
@@ -60,22 +72,37 @@ public class PlayerAction : MonoBehaviour, GameEventListener
 	///////////////////////////////////////////////////////////////////////////
 	// ACTION FUNCTIONS
 	///////////////////////////////////////////////////////////////////////////
-	public void FireBullet(){
-		//Clone of the bullet
-		GameObject Clone;
+	public void FireBullet(string direction){
+		if (Time.time > nextFire) { //bullet delay
+			nextFire = Time.time + fireRate;
 
-		//spawning the bullet at position
-		Clone = (Instantiate(bulletPrefab, transform.position,transform.rotation)) as GameObject;
-		GameObject bPrefab = Instantiate(bulletPrefab, transform.position, Quaternion.identity) as GameObject;
+			//Clone of the bullet
+			GameObject Clone;
 
-		//add force to the spawned objected
-		Rigidbody2D rb = Clone.GetComponent<Rigidbody2D>();
+			//spawning the bullet at position
+			Clone = (Instantiate (bulletPrefab, transform.position, transform.rotation)) as GameObject;
+			GameObject bPrefab = Instantiate (bulletPrefab, transform.position, Quaternion.identity) as GameObject;
 
-		rb.AddRelativeForce(rigid.velocity * 100 );
+			//add force to the spawned objected
+			Rigidbody2D rb = Clone.GetComponent<Rigidbody2D> ();
 
-
-		Debug.Log ("Force is added");
+			switch (direction) {
+			case "Up":
+				rb.AddRelativeForce (Vector2.up * 100);
+				break;
+			case "Left":
+				rb.AddRelativeForce (Vector2.left * 100);
+				break; 
+			case "Right":
+				rb.AddRelativeForce (Vector2.right * 100);
+				break; 
+			case "Down":
+				rb.AddRelativeForce (Vector2.down * 100);
+				break; 
+			}
+		}
 		
 	}
 	
+
 }

@@ -30,13 +30,13 @@ public class PlayerAnimation : MonoBehaviour, GameEventListener {
 			string strKeyPressed = k.ToString();
 
 			switch (strKeyPressed){
-			case "LeftArrow":
+			case "A":
 				Flip ("left");
 				anim.SetBool("Idle",false);
 				anim.SetBool("WalkRight",false); 
 				anim.SetBool("WalkLeft",true); 
 				break;
-			case "RightArrow": 
+			case "D": 
 				Flip ("right");
 				anim.SetBool("Idle",false); 
 				anim.SetBool("WalkRight",true); 
