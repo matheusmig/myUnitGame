@@ -28,7 +28,6 @@ public class NPCAtt : MonoBehaviour {
 
     void Update()
         {
-        Debug.Log(" entrou no update: ");
         distToTarget = distanceToTarget();
         if (distToTarget != -1)
         {

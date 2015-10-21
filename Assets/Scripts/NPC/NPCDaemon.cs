@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using GameEvents;
 
 //********************************************************************************
 // Gerencia (criando e destruindo) todos requisitos de um NPC
@@ -11,7 +12,7 @@ using System.Collections;
 //*********************************************************************************
 [RequireComponent (typeof (Rigidbody))] //requer que um rigidbody seja instanciado
 
-public class NPCDaemon : MonoBehaviour {
+public class NPCDaemon : MonoBehaviour, GameEventListener{
 
 	public Animator m_anim;		 //Classe que gerencia a animação
 	private Rigidbody2D m_rigid;	 //Classe que armazena o rigidBody do NPC 
@@ -35,10 +36,15 @@ public class NPCDaemon : MonoBehaviour {
 
 	//////////////////////////////////////
 	/// Variaveis de Animação
-	private bool m_isFacingLeft;  
+	private bool m_isFacingLeft;
 
 
-    void Awake(){
+    /////////////////////////////////////
+    /// Variavel de Estado do NPC
+    int NPCStateS;
+
+
+    void awake(){
 		m_me = transform; //cache transform data for easy access/performance
 	}
 
@@ -50,37 +56,86 @@ public class NPCDaemon : MonoBehaviour {
 		m_stun = false;
 		m_rigid = GetComponent<Rigidbody2D>();
 		directionToTarget();
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        NPCStateS = 1;
+        GameEventManager.registerListener(this);
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // EVENT LISTENING
+    //////////////////////////////////////////////////////////////////////////
+
+    public void eventReceived(GameEvent e)
+    {
+        if (e is NPCStateEvent)
+        {
+            NPCStateS = (e as NPCStateEvent).NPCState;
+        }
+    }
+
+
+    // Update is called once per frame
+    void Update () {
+        Debug.Log("State: " + NPCStateS);
+        switch (NPCStateS)
+        {
+            case 1:  State1AI();
+                break;
+            case 2:  State2AI();
+                break;
+                
+        }
+
+    }
+
+    /////////////////////////////////////////
+    /// Métodos de AI do Vegetal como Inimigo
+    void State1AI()
+    {
+
         m_distanceToTarget = distanceToTarget();
-		m_actualDirection = directionToTarget();
+        m_actualDirection = directionToTarget();
 
-		if (m_stuntime > 0) {
-			m_stuntime -= Time.deltaTime;
-		} else {
-			m_stun = false;
-		}
+        if (m_stuntime > 0)
+        {
+            m_stuntime -= Time.deltaTime;
+        }
+        else
+        {
+            m_stun = false;
+        }
 
-		if (!m_stun) {
-			if (m_target){
-				if((m_distanceToTarget < m_range) && !isPathObstructed()) {
-					Move(m_actualDirection, m_speed);
-				} else {
-					Move(new Vector3 (1, 0, 0), m_speed);
-				}
-			} else {
-				Move(new Vector3 (1, 0, 0), m_speed);
-			}
-		}
+        if (!m_stun)
+        {
+            if (m_target)
+            {
+                if ((m_distanceToTarget < m_range) && !isPathObstructed())
+                {
+                    Move(m_actualDirection, m_speed);
+                }
+                else
+                {
+                    Move(new Vector3(1, 0, 0), m_speed);
+                }
+            }
+            else
+            {
+                Move(new Vector3(1, 0, 0), m_speed);
+            }
+        }
+    }
+
+    /////////////////////////////////////////
+    /// Métodos de AI do Vegetal como Amigo
+    void State2AI()
+    {
+        Debug.Log("Voltou a ser um vegetal amigo!!");
+
+    }
 
 
-	}
-
-	//////////////////////////////////////
-	/// Métodos de Movimentação
-	public void Move(Vector3 direction, float speed){
+    //////////////////////////////////////
+    /// Métodos de Movimentação
+    public void Move(Vector3 direction, float speed){
 		m_rigid.AddForce(direction * speed);
 	}
 

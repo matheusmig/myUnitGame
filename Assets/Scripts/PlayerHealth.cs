@@ -4,8 +4,7 @@ using GameEvents;
 
 public class PlayerHealth : MonoBehaviour, GameEventListener{
     
-
-	public float Health;
+    public float Health;
 	public float MaxHealth;
     private float healthChange = 0;
 
@@ -13,8 +12,8 @@ public class PlayerHealth : MonoBehaviour, GameEventListener{
 	private float HitDelay = 0.5f;
 
 	void Start () {
-		MaxHealth = 100;
-		Health = 100;
+		//MaxHealth = 2000;
+		//Health = 2000;
 		HitTime = Time.time;
         GameEventManager.registerListener(this);
     }
@@ -51,7 +50,7 @@ public class PlayerHealth : MonoBehaviour, GameEventListener{
 			Health = MaxHealth;
 		}
 	
-		Debug.Log (" HP: "+ Health.ToString());
+		//Debug.Log (" HP: "+ Health.ToString());
 	}
 
 	void OnCollisionStay2D (Collision2D EnemyHit){

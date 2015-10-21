@@ -1,7 +1,7 @@
 ﻿//////////////////////////////////////////////////////////////////////////////
-// PlayerHealthEvent
+// NPCStateEvent
 //////////////////////////////////////////////////////////////////////////////
-// This event is dispatched when the health player status is changed.
+// This event is dispatched when the vegetal state is changed.
 //////////////////////////////////////////////////////////////////////////////
 
 //default namespaces
@@ -11,23 +11,23 @@ using System.Collections;
 //Add access to game events classes
 using GameEvents;
 
-//PlayerHealthEvent is a GameEvent
-public class PlayerHealthEvent : GameEvent
+//NPCHealthEvent is a GameEvent
+public class NPCStateEvent : GameEvent
 {
 
     ///////////////////////////////////////////////////////////////////////////
     // EVENT DATA
     ///////////////////////////////////////////////////////////////////////////
 
-    public float playerHealth;
+    public int NPCState;
 
     ///////////////////////////////////////////////////////////////////////////
     // CONSTRUCTOR
     ///////////////////////////////////////////////////////////////////////////
 
-    public PlayerHealthEvent( float health)
+    public NPCStateEvent(int State)
     {
-              playerHealth = health;
-       
-    }    
+        NPCState = State;
+        //Debug.Log(" Entrou no NPCStateEvent: ");
+    }
 }

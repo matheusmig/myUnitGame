@@ -75,7 +75,10 @@
     <Compile Include="Assets\Scripts\NPC\NPCAtt.cs" />
     <Compile Include="Assets\Scripts\NPC\NPCCharacter.cs" />
     <Compile Include="Assets\Scripts\NPC\NPCDaemon.cs" />
+    <Compile Include="Assets\Scripts\NPC\NPCHealth.cs" />
+    <Compile Include="Assets\Scripts\NPC\NPCHealthEvent.cs" />
     <Compile Include="Assets\Scripts\NPC\NPCMovement.cs" />
+    <Compile Include="Assets\Scripts\NPC\NPCStateEvent.cs" />
     <Compile Include="Assets\Scripts\PlayerAction.cs" />
     <Compile Include="Assets\Scripts\PlayerActionEvent.cs" />
     <Compile Include="Assets\Scripts\PlayerAnimation.cs" />
