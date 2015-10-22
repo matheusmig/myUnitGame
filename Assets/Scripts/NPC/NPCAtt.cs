@@ -8,7 +8,7 @@ using GameEvents;
 //
 //
 //*********************************************************************************
-
+//[RequireComponent(typeof(Rigidbody))] //requer que um rigidbody seja instanciado
 public class NPCAtt : MonoBehaviour, GameEventListener {
 
 
@@ -19,9 +19,10 @@ public class NPCAtt : MonoBehaviour, GameEventListener {
     public Transform mePosition;
 
     private float distToTarget;
-    int NPCState;
-    
+    public ParticleSystem particle;
+
     void Start() {
+     
     }
 
 
@@ -33,13 +34,14 @@ public class NPCAtt : MonoBehaviour, GameEventListener {
     {
         if (e is NPCStateEvent)
         {
-            NPCState = (e as NPCStateEvent).NPCState;
+            //NPCDaemon.NPCStateAtt = (e as NPCStateEvent).NPCState;
         }
     }
 
 void Update()
         {
-        switch (NPCState) {
+        Debug.Log("State: " + NPCDaemon.NPCStateS);
+        switch (NPCDaemon.NPCStateS) {
             case 1:
                 State1AI();
                 break;
@@ -68,13 +70,17 @@ void Update()
         else {
             Debug.Log(" foi menos um: ");
         }
+
+        // activate the particle
+        particle.Play();
+        //particle.Stop();
     }
 
 
     ///////////////////////////////////////////////////////
     /// Métodos de AI de ataque do Vegetal como amigo
     void State2AI() {
-
+        particle.Stop();
     }
 
     public float distanceToTarget()

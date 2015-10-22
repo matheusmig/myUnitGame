@@ -21,7 +21,7 @@ public class BulletBehavior : MonoBehaviour {
 	const float Bullet1Power = 1.5f;
 	
 	void Update(){
-		Debug.Log (rb.velocity);
+		//Debug.Log (rb.velocity);
 	  if (rb.velocity.Equals(new Vector2(0,0)))
 	    Destroy(gameObject); 
 	}

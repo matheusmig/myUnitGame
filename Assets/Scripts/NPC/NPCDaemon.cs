@@ -18,12 +18,13 @@ public class NPCDaemon : MonoBehaviour, GameEventListener{
 	private Rigidbody2D m_rigid;	 //Classe que armazena o rigidBody do NPC 
 
 	public Transform m_target;     //Alvo atual do inimigo
-	public Transform m_me;	 	 //Matriz de transformacao atual do NPC
+	public Transform m_me;       //Matriz de transformacao atual do NPC
 
+    
 
-	//////////////////////////////////////
-	/// Variaveis de Movimentação
-	public  float   m_speed;
+    //////////////////////////////////////
+    /// Variaveis de Movimentação
+    public  float   m_speed;
 	public  float   m_range = 1f; 
 	private Vector2 m_actualDirection;
 	private bool    m_stun;
@@ -41,7 +42,7 @@ public class NPCDaemon : MonoBehaviour, GameEventListener{
 
     /////////////////////////////////////
     /// Variavel de Estado do NPC
-    int NPCStateS;
+    static public int NPCStateS;
 
 
     void awake(){
@@ -73,7 +74,7 @@ public class NPCDaemon : MonoBehaviour, GameEventListener{
 
     // Update is called once per frame
     void Update () {
-        Debug.Log("State: " + NPCStateS);
+        //Debug.Log("State: " + NPCStateS);
         switch (NPCStateS) {
             case 1:  State1AI();
                 break;
