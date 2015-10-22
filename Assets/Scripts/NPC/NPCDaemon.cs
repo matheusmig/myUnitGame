@@ -73,7 +73,7 @@ public class NPCDaemon : MonoBehaviour, GameEventListener{
 
     // Update is called once per frame
     void Update () {
-        Debug.Log("State: " + NPCStateS);
+       // Debug.Log("State: " + NPCStateS);
         switch (NPCStateS) {
             case 1:  State1AI();
                 break;

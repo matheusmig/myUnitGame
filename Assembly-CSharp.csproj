@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Bullets\BulletBehavior.cs" />
      <Compile Include="Assets\Scripts\Depth.cs" />
+     <Compile Include="Assets\Scripts\GUI\DamagePopUp.cs" />
      <Compile Include="Assets\Scripts\InputManager.cs" />
      <Compile Include="Assets\Scripts\NPC\NPCAI.cs" />
      <Compile Include="Assets\Scripts\NPC\NPCAnimation.cs" />

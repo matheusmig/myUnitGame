@@ -1,14 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Bullets\BulletBehavior.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GUI\DamagePopUp.cs">
     <Files>
-      <File FileName="Assets\Scripts\PlayerActionEvent.cs" Line="32" Column="1" />
-      <File FileName="Assets\Scripts\PlayerAction.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PlayerMoveEvent.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\InputManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GUI\DamagePopUp.cs" Line="13" Column="54" />
       <File FileName="Assets\Scripts\PlayerHealth.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\NPC\NPCAtt.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Bullets\BulletBehavior.cs" Line="25" Column="45" />
+      <File FileName="Assets\Scripts\NPC\NPCHealth.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

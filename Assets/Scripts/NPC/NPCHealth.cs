@@ -30,8 +30,14 @@ public class NPCHealth : MonoBehaviour, GameEventListener {
             if ((NPCHealthLvl < NPCMaxHealth / 2) && (NPCHealthLvl + NPCHealthChange >= NPCMaxHealth / 2))
                 GameEventManager.post(new NPCStateEvent(1)); //dispara o evento de transformação do vegetal em Inimigo. Esse evento será disparado pelo efeito do veneno no ataque dos inimigos no vegetal, que poderá transformar-lo novamente em vegetalInimigo
             NPCHealthLvl += NPCHealthChange;
+			DamagePopUp.ShowMessage (NPCHealthChange.ToString(), transform.position);  
             if (NPCHealthLvl <= 0)
-                NPCHealthLvl = 0;            
+                NPCHealthLvl = 0;   
+
+			/////////////////
+			/// PopUp Damage
+			var selfTransform = GetComponent<Transform> ();
+			DamagePopUp.ShowMessage (NPCHealthChange.ToString(), selfTransform.position); 
         }
     }
 
