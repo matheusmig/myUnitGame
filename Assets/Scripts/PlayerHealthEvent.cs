@@ -25,9 +25,7 @@ public class PlayerHealthEvent : GameEvent
     // CONSTRUCTOR
     ///////////////////////////////////////////////////////////////////////////
 
-    public PlayerHealthEvent( float health)
-    {
-              playerHealth = health;
-       
+    public PlayerHealthEvent( float health) { 
+              playerHealth = health;       
     }    
 }

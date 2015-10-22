@@ -22,8 +22,10 @@ public class PlayerHealth : MonoBehaviour, GameEventListener{
     // EVENT LISTENING
     //////////////////////////////////////////////////////////////////////////
 
-    public void eventReceived(GameEvent e) {
-        if (e is PlayerHealthEvent) {
+    public void eventReceived(GameEvent e)
+    {
+        if (e is PlayerHealthEvent)
+        {
             float healthChange = (e as PlayerHealthEvent).playerHealth;
             Health += healthChange;
             if (Health <= 0)
@@ -31,6 +33,9 @@ public class PlayerHealth : MonoBehaviour, GameEventListener{
             //Debug.Log("HealthChange: " + healthChange);
         }
     }
+
+
+
 
     ///////////////////////////////////////////////////////////////////////////
     // Update health is called once per frame
@@ -40,9 +45,11 @@ public class PlayerHealth : MonoBehaviour, GameEventListener{
 		if (Health <= 0) {
 			Debug.Log ("GAME OVER, YOU'RE DEAD");
 		}
+
 		if (Health > MaxHealth) {
 			Health = MaxHealth;
-		}	
+		}
+	
 		//Debug.Log (" HP: "+ Health.ToString());
 	}
 

@@ -12,7 +12,8 @@ using System.Collections;
 using GameEvents;
 
 //NPCHealthEvent is a GameEvent
-public class NPCHealthEvent :  GameEvent {
+public class NPCHealthEvent :  GameEvent
+{
 
     ///////////////////////////////////////////////////////////////////////////
     // EVENT DATA
@@ -24,7 +25,9 @@ public class NPCHealthEvent :  GameEvent {
     // CONSTRUCTOR
     ///////////////////////////////////////////////////////////////////////////
 
-    public NPCHealthEvent(float health) {
+    public NPCHealthEvent(float health)
+    {
         NPCHealth = health;
+
     }
 }

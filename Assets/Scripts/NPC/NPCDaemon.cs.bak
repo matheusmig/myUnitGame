@@ -64,8 +64,10 @@ public class NPCDaemon : MonoBehaviour, GameEventListener{
     // EVENT LISTENING
     //////////////////////////////////////////////////////////////////////////
 
-    public void eventReceived(GameEvent e) {
-        if (e is NPCStateEvent) {
+    public void eventReceived(GameEvent e)
+    {
+        if (e is NPCStateEvent)
+        {
             NPCStateS = (e as NPCStateEvent).NPCState;
         }
     }
@@ -74,55 +76,70 @@ public class NPCDaemon : MonoBehaviour, GameEventListener{
     // Update is called once per frame
     void Update () {
         Debug.Log("State: " + NPCStateS);
-        switch (NPCStateS) {
+        switch (NPCStateS)
+        {
             case 1:  State1AI();
                 break;
             case 2:  State2AI();
-                break;                
+                break;
+                
         }
+
     }
 
-    ///////////////////////////////////////////////////////
-    /// Métodos de AI de movimento do Vegetal como Inimigo
-    void State1AI() {
+    /////////////////////////////////////////
+    /// Métodos de AI do Vegetal como Inimigo
+    void State1AI()
+    {
+
         m_distanceToTarget = distanceToTarget();
         m_actualDirection = directionToTarget();
 
-        if (m_stuntime > 0) {
+        if (m_stuntime > 0)
+        {
             m_stuntime -= Time.deltaTime;
         }
-        else {
+        else
+        {
             m_stun = false;
         }
 
-        if (!m_stun) {
-            if (m_target) {
-                if ((m_distanceToTarget < m_range) && !isPathObstructed()) {
+        if (!m_stun)
+        {
+            if (m_target)
+            {
+                if ((m_distanceToTarget < m_range) && !isPathObstructed())
+                {
                     Move(m_actualDirection, m_speed);
                 }
-                else {
+                else
+                {
                     Move(new Vector3(1, 0, 0), m_speed);
                 }
             }
-            else {
+            else
+            {
                 Move(new Vector3(1, 0, 0), m_speed);
             }
         }
     }
 
-    ////////////////////////////////////////////////////
-    /// Métodos de AI de movimento do Vegetal como Amigo
-    void State2AI() {
+    /////////////////////////////////////////
+    /// Métodos de AI do Vegetal como Amigo
+    void State2AI()
+    {
         Debug.Log("Voltou a ser um vegetal amigo!!");
+
     }
+
 
     //////////////////////////////////////
     /// Métodos de Movimentação
-    public void Move(Vector3 direction, float speed) {
+    public void Move(Vector3 direction, float speed){
 		m_rigid.AddForce(direction * speed);
 	}
 
-	void OnCollisionEnter2D(Collision2D playerhit) {
+	void OnCollisionEnter2D(Collision2D playerhit){
 		//Debug.Log (playerhit.gameObject.tag);
 		if (playerhit.gameObject.tag == "Player") {
 			Debug.Log ("Chocou-se");
@@ -133,7 +150,7 @@ public class NPCDaemon : MonoBehaviour, GameEventListener{
 
 	//////////////////////////////////////
 	/// Métodos de I.A.
-	public Vector2 directionToTarget() {
+	public Vector2 directionToTarget(){
 		float xDiff, yDiff;
 		xDiff = m_target.position.x - m_me.position.x;
 		yDiff = m_target.position.y - m_me.position.y;
@@ -141,7 +158,7 @@ public class NPCDaemon : MonoBehaviour, GameEventListener{
 		return m_actualDirection.normalized;
 	}
 
-	public float distanceToTarget() {
+	public float distanceToTarget(){
 		if (m_target) {
 			return Vector3.Distance (m_me.position, m_target.position);
 		} else {
@@ -149,7 +166,7 @@ public class NPCDaemon : MonoBehaviour, GameEventListener{
 		}
 	}
 
-	public bool isPathObstructed() {
+	public bool isPathObstructed(){
 		if (Physics2D.Raycast( m_me.position, m_actualDirection, 2, m_wallLayer)){
 			Debug.DrawLine(m_me.position, new Vector3(m_actualDirection.x,m_actualDirection.y,0), Color.red); 
 			return true;
