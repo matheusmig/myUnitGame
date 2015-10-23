@@ -8,13 +8,13 @@
 //
 // ------------------------------------------------------------------------------
 using System;
-namespace Application
-{
+//namespace Application
+//{
 	public class NPCCharacter
 	{
 		public NPCCharacter ()
 		{
 		}
 	}
-}
+//}
 

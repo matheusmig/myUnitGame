@@ -6,7 +6,7 @@ public class NPCAnimation : MonoBehaviour {
 	private bool        m_isFacingLeft;
 	private Animator    m_anim;
 	private Rigidbody2D m_rigid2d;
-
+    
 	void Start () {
 		m_isFacingLeft = false;
 		m_anim    = GetComponent<Animator> ();
@@ -32,7 +32,7 @@ public class NPCAnimation : MonoBehaviour {
 			m_anim.SetBool("WalkLeft", false);
 			m_anim.SetBool("Idle",     true);
 		}
-	
+        
 	}
 
 	protected void Flip(string side)    

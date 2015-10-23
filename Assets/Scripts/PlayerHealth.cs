@@ -11,7 +11,8 @@ public class PlayerHealth : MonoBehaviour, GameEventListener{
 	private float HitTime;
 	private float HitDelay = 0.5f;
 
-	void Start () {
+
+    void Start () {
 		//MaxHealth = 2000;
 		//Health = 2000;
 		HitTime = Time.time;
