@@ -37,7 +37,9 @@ public class NPCHealth : MonoBehaviour, GameEventListener {
 			/////////////////
 			/// PopUp Damage
 			var selfTransform = GetComponent<Transform> ();
-			DamagePopUp.ShowMessage (NPCHealthChange.ToString(), selfTransform.position); 
+			DamagePopUp.ShowMessage (NPCHealthChange.ToString(), selfTransform.position);
+            
+            //DamagePopUp.ShowMessage (NPCHealthLvl.ToString(), selfTransform.position);
         }
     }
 

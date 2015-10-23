@@ -27,6 +27,8 @@ public class PlayerHealth : MonoBehaviour, GameEventListener{
         if (e is PlayerHealthEvent) {
             float healthChange = (e as PlayerHealthEvent).playerHealth;
             Health += healthChange;
+            var selfTransform = GetComponent<Transform>();
+            DamagePopUp.ShowMessage(healthChange.ToString(), selfTransform.position);
             if (Health <= 0)
                 Health = 0;
             //Debug.Log("HealthChange: " + healthChange);

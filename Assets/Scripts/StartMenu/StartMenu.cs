@@ -35,8 +35,7 @@ public class StartMenu : MonoBehaviour {
 
     public void StartLevel()
     {
-        Application.LoadLevel(1);
-       
+        Application.LoadLevel(1);       
     }
 
     public void ExitGame()
