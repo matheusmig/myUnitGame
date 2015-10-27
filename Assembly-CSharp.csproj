@@ -52,11 +52,13 @@
      <Compile Include="Assets\Scripts\NPC\NPCAI.cs" />
      <Compile Include="Assets\Scripts\NPC\NPCAnimation.cs" />
      <Compile Include="Assets\Scripts\NPC\NPCAtt.cs" />
+     <Compile Include="Assets\Scripts\NPC\NPCAttackParticleEffect.cs" />
      <Compile Include="Assets\Scripts\NPC\NPCCharacter.cs" />
      <Compile Include="Assets\Scripts\NPC\NPCDaemon.cs" />
      <Compile Include="Assets\Scripts\NPC\NPCHealth.cs" />
      <Compile Include="Assets\Scripts\NPC\NPCHealthEvent.cs" />
      <Compile Include="Assets\Scripts\NPC\NPCMovement.cs" />
+     <Compile Include="Assets\Scripts\NPC\NPCRespawner.cs" />
      <Compile Include="Assets\Scripts\NPC\NPCStateEvent.cs" />
      <Compile Include="Assets\Scripts\PlayerAction.cs" />
      <Compile Include="Assets\Scripts\PlayerActionEvent.cs" />
@@ -65,6 +67,7 @@
      <Compile Include="Assets\Scripts\PlayerHealthEvent.cs" />
      <Compile Include="Assets\Scripts\PlayerMoveEvent.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+     <Compile Include="Assets\Scripts\StartMenu\StartMenu.cs" />
      <Compile Include="Assets\Scripts\event system\GameEvent.cs" />
      <Compile Include="Assets\Scripts\event system\GameEventListener.cs" />
      <Compile Include="Assets\Scripts\event system\GameEventManager.cs" />
