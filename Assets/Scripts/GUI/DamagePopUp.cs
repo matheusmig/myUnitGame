@@ -20,7 +20,7 @@ public class DamagePopUp : MonoBehaviour {
 	}
 
 	public static void ShowMessage(string texto, Vector3 positionRcvd){
-		Debug.Log (positionRcvd);
+		//Debug.Log (positionRcvd);
 		var newInst  = new GameObject("Damage Popup");
 		var dmgPopUp = newInst.AddComponent<DamagePopUp> ();
 		dmgPopUp.position = positionRcvd;

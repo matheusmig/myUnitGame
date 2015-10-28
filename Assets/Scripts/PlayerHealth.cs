@@ -50,7 +50,7 @@ public class PlayerHealth : MonoBehaviour, GameEventListener{
 	}
 
 	void OnCollisionStay2D (Collision2D EnemyHit){
-		Debug.Log (EnemyHit.gameObject.tag);
+//		Debug.Log (EnemyHit.gameObject.tag);
 		if (EnemyHit.gameObject.tag == "Enemy") {
 			if (HitTime + HitDelay < Time.time){
 				HitTime = Time.time;

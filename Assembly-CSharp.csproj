@@ -49,11 +49,9 @@
      <Compile Include="Assets\Scripts\Depth.cs" />
      <Compile Include="Assets\Scripts\GUI\DamagePopUp.cs" />
      <Compile Include="Assets\Scripts\InputManager.cs" />
-     <Compile Include="Assets\Scripts\NPC\NPCAI.cs" />
      <Compile Include="Assets\Scripts\NPC\NPCAnimation.cs" />
      <Compile Include="Assets\Scripts\NPC\NPCAtt.cs" />
      <Compile Include="Assets\Scripts\NPC\NPCAttackParticleEffect.cs" />
-     <Compile Include="Assets\Scripts\NPC\NPCCharacter.cs" />
      <Compile Include="Assets\Scripts\NPC\NPCDaemon.cs" />
      <Compile Include="Assets\Scripts\NPC\NPCHealth.cs" />
      <Compile Include="Assets\Scripts\NPC\NPCHealthEvent.cs" />

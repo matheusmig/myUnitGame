@@ -14,11 +14,11 @@ using GameEvents;
 
 public class NPCDaemon : MonoBehaviour, GameEventListener{
 
-	public Animator m_anim;		 //Classe que gerencia a animação
-	private Rigidbody2D m_rigid;	 //Classe que armazena o rigidBody do NPC 
+	public Animator m_anim;		   //Classe que gerencia a animação
+	private Rigidbody2D m_rigid;   //Classe que armazena o rigidBody do NPC 
 
-	public Transform m_target;     //Alvo atual do inimigo
-	public Transform m_me;       //Matriz de transformacao atual do NPC
+	private Transform m_target;    //Alvo atual do inimigo
+	public Transform m_me;        //Matriz de transformacao atual do NPC
 
     
 
@@ -42,7 +42,7 @@ public class NPCDaemon : MonoBehaviour, GameEventListener{
 
     /////////////////////////////////////
     /// Variavel de Estado do NPC
-    static public int NPCStateS;
+    static public int actualState;
 
 
     void awake(){
@@ -51,31 +51,35 @@ public class NPCDaemon : MonoBehaviour, GameEventListener{
 
 	// Use this for initialization
 	void Start () {
+		m_target = GameObject.FindWithTag("Player").transform;
 		m_wallLayer = 1 << 8; //binary operation
 		m_isFacingLeft = false;
 		m_stuntime = 0;
 		m_stun = false;
 		m_rigid = GetComponent<Rigidbody2D>();
 		directionToTarget();
-        NPCStateS = 1;
+		actualState = 1;
         GameEventManager.registerListener(this);
     }
 
     ///////////////////////////////////////////////////////////////////////////
     // EVENT LISTENING
     //////////////////////////////////////////////////////////////////////////
-
     public void eventReceived(GameEvent e) {
         if (e is NPCStateEvent) {
-            NPCStateS = (e as NPCStateEvent).NPCState;
-        }
+			var evento = (e as NPCStateEvent);
+			var selfID = gameObject.GetInstanceID();
+
+			if (selfID == evento.NPCInstanceID){
+				actualState = evento.NPCState;
+			}
+		}
     }
 
 
     // Update is called once per frame
     void Update () {
-       // Debug.Log("State: " + NPCStateS);
-        switch (NPCStateS) {
+		switch (actualState) {
             case 1:  State1AI();
                 break;
             case 2:  State2AI();
@@ -112,28 +116,11 @@ public class NPCDaemon : MonoBehaviour, GameEventListener{
     }
 
     ////////////////////////////////////////////////////
-    /// Métodos de AI de movimento do Vegetal como Amigo
+    /// Métodos de AI 
     void State2AI() {
         Debug.Log("Voltou a ser um vegetal amigo!!");
     }
 
-    //////////////////////////////////////
-    /// Métodos de Movimentação
-    public void Move(Vector3 direction, float speed) {
-		m_rigid.AddForce(direction * speed);
-	}
-
-	void OnCollisionEnter2D(Collision2D playerhit) {
-		//Debug.Log (playerhit.gameObject.tag);
-		if (playerhit.gameObject.tag == "Player") {
-			Debug.Log ("Chocou-se");
-			m_stun = true;
-			m_stuntime = 2;
-		}
-	}
-
-	//////////////////////////////////////
-	/// Métodos de I.A.
 	public Vector2 directionToTarget() {
 		float xDiff, yDiff;
 		xDiff = m_target.position.x - m_me.position.x;
@@ -160,9 +147,19 @@ public class NPCDaemon : MonoBehaviour, GameEventListener{
 		}
 	}
 
-
 	//////////////////////////////////////
-	/// Métodos de Animação
-
+	/// Métodos de Movimentação
+	public void Move(Vector3 direction, float speed) {
+		m_rigid.AddForce(direction * speed);
+	}
+	
+	void OnCollisionEnter2D(Collision2D playerhit) {
+		//Debug.Log (playerhit.gameObject.tag);
+		if (playerhit.gameObject.tag == "Player") {
+			Debug.Log ("Chocou-se");
+			m_stun = true;
+			m_stuntime = 2;
+		}
+	}
 
 }

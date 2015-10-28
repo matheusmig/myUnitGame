@@ -15,14 +15,14 @@ public class NPCAtt : MonoBehaviour, GameEventListener {
     /////////////////////////////////////
     /// Variaveis de Ataque
     public float attackRange = 1f;
-    public Transform targetPosition;
+    private Transform targetPosition;
     public Transform mePosition;
 
     private float distToTarget;
     public ParticleSystem particle;
 
     void Start() {
-     
+		targetPosition = GameObject.FindWithTag("Player").transform;
     }
 
 
@@ -40,8 +40,8 @@ public class NPCAtt : MonoBehaviour, GameEventListener {
 
 void Update()
         {
-        Debug.Log("State: " + NPCDaemon.NPCStateS);
-        switch (NPCDaemon.NPCStateS) {
+       // Debug.Log("State: " + NPCDaemon.NPCStateS);
+		switch (NPCDaemon.actualState) {
             case 1:
                 State1AI();
                 break;
